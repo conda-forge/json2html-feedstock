@@ -7,20 +7,20 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/json2html-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/json2html-{{ version }}.tar.gz
   sha256: 8951a53662ae9cfd812685facdba693fc950ffc1c1fd1a8a2d3cf4c34600689c
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -29,6 +29,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/softvar/json2html
